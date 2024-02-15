@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Customers - {{ workout_plan.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Customers - {{ workout_plan.name }}</h2>
+    <div class="row">
+        {% for customer in customers %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ customer.name }}</h5>
+                    <p class="card-text">Email: {{ customer.email }}</p>
+                    <p class="card-text">Age: {{ customer.age }}</p>
+                    <p class="card-text">Gender: {{ customer.get_gender_display }}</p>
+                    <p class="card-text">Height: {{ customer.height }}</p>
+                    <p class="card-text">Weight: {{ customer.weight }}</p>
+                    <p class="card-text">Waist Measurement: {{ customer.waist_measurement }}</p>
+                    <p class="card-text">BMI: {{ customer.BMI }}</p>
+                    <p class="card-text">Goal: {{ customer.goal }}</p>
+                    <p class="card-text">Registration Date: {{ customer.registration_date }}</p>
+                    <a href="{% url 'add_progress_report' workout_plan_id=workout_plan.workout_id customer_id=customer.customer_id %}" class="btn btn-primary">Add Progress Report</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-12">
+            <p>No customers available.</p>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'instructor_dashboard' %}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+</div>
+{% endblock %}

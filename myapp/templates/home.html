@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1>Welcome to Fitness Club Management System</h1>
+    <p>Manage Your Fitness Club Effortlessly</p>
+    <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login to Explore</a>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ullamcorper volutpat massa, nec efficitur libero dictum eget. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec eget sem nec ex congue vehicula vel nec justo.</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Services</h2>
+            <ul>
+                <li>Personalized Workout Plans</li>
+                <li>Progress Tracking</li>
+                <li>Salary Management for Instructors</li>
+                <li>Expense Tracking</li>
+                <li>Customer Relationship Management</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center mt-5">
+    <h2>Why Choose Us?</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Experienced Instructors</h4>
+            <p>We have a team of experienced and certified fitness instructors to guide you.</p>
+        </div>
+        <div class="col-md-4">
+            <h4>State-of-the-Art Facilities</h4>
+            <p>Our fitness club is equipped with the latest exercise equipment and facilities.</p>
+        </div>
+        <div class="col-md-4">
+            <h4>Customer Satisfaction</h4>
+            <p>We prioritize customer satisfaction and strive to meet your fitness goals.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

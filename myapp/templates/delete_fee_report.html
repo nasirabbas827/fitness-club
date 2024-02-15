@@ -1,0 +1,17 @@
+<!-- delete_fee_report.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete Fee Report
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Delete Fee Report</h2>
+        <p>Are you sure you want to delete "{{ fee_report }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        </form>
+    </div>
+{% endblock %}

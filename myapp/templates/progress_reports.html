@@ -1,0 +1,53 @@
+<!-- progress_reports.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Progress Reports
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Progress Reports</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Weight</th>
+                        <th>Body Fat %</th>
+                        <th>Muscle Mass</th>
+                        <th>Cardiovascular Endurance</th>
+                        <th>Strength</th>
+                        <th>Flexibility</th>
+                        <th>Other Metrics</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for progress_report in progress_reports %}
+                        <tr>
+                            <td>{{ progress_report.customer.name }}</td>
+                            <td>{{ progress_report.date }}</td>
+                            <td>{{ progress_report.weight }}</td>
+                            <td>{{ progress_report.body_fat_percentage }}</td>
+                            <td>{{ progress_report.muscle_mass }}</td>
+                            <td>{{ progress_report.cardiovascular_endurance }}</td>
+                            <td>{{ progress_report.strength }}</td>
+                            <td>{{ progress_report.flexibility }}</td>
+                            <td>{{ progress_report.other_metrics }}</td>
+                            <td>
+                                <a href="{% url 'edit_progress_report' progress_report.report_id %}" class="btn btn-sm mb-2  btn-primary">Edit</a>
+                                <a href="{% url 'delete_progress_report' progress_report.report_id %}" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="10">No progress reports available.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

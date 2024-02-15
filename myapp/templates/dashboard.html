@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Instructor Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ instructor.name }}</h2>
+    <p>Email: {{ instructor.email }}</p>
+    <p>Qualification: {{ instructor.qualification }}</p>
+    <p>Timings From: {{ instructor.timings_from }}</p>
+    <p>Timings To: {{ instructor.timings_to }}</p>
+    <form action="{% url 'backup_database' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Backup Database</button>
+    </form>
+    <h3 class="mt-4">Your Workout Plans:</h3>
+    <div class="row mt-3">
+        {% for workout_plan in workout_plans %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ workout_plan.name }}</h5>
+                    <p class="card-text">Category: {{ workout_plan.category }}</p>
+                    <p class="card-text">Description: {{ workout_plan.description }}</p>
+                    <a href="{% url 'customer_view' workout_plan.workout_id %}" class="btn btn-primary">View Customers</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-md-12">
+            <p>No workout plans available.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

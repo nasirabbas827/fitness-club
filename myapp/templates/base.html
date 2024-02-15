@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: aquamarine;
+        }
+        h1,h2,h3,h4,h5{
+            margin: 30px;
+            text-align: center;
+        }
+        .container{
+            margin-bottom:50px;
+        }
+        .jumbotron {
+            height: 550px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{% static "images/hotel.jpg" %}');
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .jumbotron h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .jumbotron p {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Fitness Club Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                {% if request.session.instructor_id %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'instructor_dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_progress_reports' %}">Progress Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'salary_report' %}">Salary Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'fee_report_list' %}">Fee Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'expenses_reports' %}">Expenses Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profit_reports' %}">Profit Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}" onclick="return confirmLogout();">Logout</a>
+                    </li>
+                {% elif request.session.customer_id %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'customer_dashboard' %}">Dashboard</a>
+                    </li>
+                    <!-- Add customer-specific links here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'customer_logout' %}" onclick="return confirmLogout();">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Instructor Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'customer_login' %}">Customer Login</a>
+                    </li>
+                {% endif %}
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="footer bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'instructor_dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'view_progress_reports' %}">Progress Reports</a></li>
+                    <!-- Add more quick links as needed -->
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <address>
+                    Fitness Club Management System<br>
+                    123 Fitness Ave, City<br>
+                    State, ZIP<br>
+                    Phone: 123-456-7890<br>
+                    Email: info@example.com
+                </address>
+            </div>
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <!-- Add more social media links as needed -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center py-3">
+        <p>&copy; 2024 Fitness Club Management System</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS (optional, if you need Bootstrap JavaScript functionality) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Logout confirmation -->
+<script>
+    function confirmLogout() {
+        return confirm("Are you sure you want to logout?");
+    }
+</script>
+
+</body>
+</html>

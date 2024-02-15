@@ -1,0 +1,17 @@
+<!-- delete_progress_report.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete Progress Report
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Delete Progress Report</h2>
+        <p>Are you sure you want to delete this progress report?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        </form>
+    </div>
+{% endblock %}

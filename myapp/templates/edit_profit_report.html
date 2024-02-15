@@ -1,0 +1,17 @@
+<!-- edit_profit_report.html -->
+{% extends 'base.html' %}
+{% block title %}
+    Edit Profit Report
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Edit Profit Report</h2>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+{% endblock %}

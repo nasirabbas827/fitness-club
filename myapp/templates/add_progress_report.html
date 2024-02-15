@@ -1,0 +1,48 @@
+<!-- In add_progress_report.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Add Progress Report
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Add Progress Report</h2>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.date.label_tag }}
+                {{ form.date }}
+            </div>
+            <div class="mb-3">
+                {{ form.weight.label_tag }}
+                {{ form.weight }}
+            </div>
+            <div class="mb-3">
+                {{ form.body_fat_percentage.label_tag }}
+                {{ form.body_fat_percentage }}
+            </div>
+            <div class="mb-3">
+                {{ form.muscle_mass.label_tag }}
+                {{ form.muscle_mass }}
+            </div>
+            <div class="mb-3">
+                {{ form.cardiovascular_endurance.label_tag }}
+                {{ form.cardiovascular_endurance }}
+            </div>
+            <div class="mb-3">
+                {{ form.strength.label_tag }}
+                {{ form.strength }}
+            </div>
+            <div class="mb-3">
+                {{ form.flexibility.label_tag }}
+                {{ form.flexibility }}
+            </div>
+            <div class="mb-3">
+                {{ form.other_metrics.label_tag }}
+                {{ form.other_metrics }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

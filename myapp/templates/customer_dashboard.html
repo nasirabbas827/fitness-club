@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block title %}
+    Customer Dashboard
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>Welcome, {{ customer.name }}!</h2>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Customer Details:</h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ customer.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>{{ customer.age }}</td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>{{ customer.get_gender_display }}</td>
+                    </tr>
+                    <tr>
+                        <th>Height</th>
+                        <td>{{ customer.height }}</td>
+                    </tr>
+                    <tr>
+                        <th>Weight</th>
+                        <td>{{ customer.weight }}</td>
+                    </tr>
+                    <tr>
+                        <th>Waist Measurement</th>
+                        <td>{{ customer.waist_measurement }}</td>
+                    </tr>
+                    <tr>
+                        <th>BMI</th>
+                        <td>{{ customer.BMI }}</td>
+                    </tr>
+                    <tr>
+                        <th>Goal</th>
+                        <td>{{ customer.goal }}</td>
+                    </tr>
+                    <tr>
+                        <th>Registration Date</th>
+                        <td>{{ customer.registration_date }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h3>Instructor Details:</h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ customer.workout_plan.instructor.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ customer.workout_plan.instructor.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Qualification</th>
+                        <td>{{ customer.workout_plan.instructor.qualification }}</td>
+                    </tr>
+                    <tr>
+                        <th>Timings</th>
+                        <td>{{ customer.workout_plan.instructor.timings_from }} - {{ customer.workout_plan.instructor.timings_to }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <h3>Workout Plan:</h3>
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <td>{{ customer.workout_plan.name }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ customer.workout_plan.category }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ customer.workout_plan.description }}</td>
+            </tr>
+        </table>
+        
+        <h3>Progress Reports:</h3>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Report ID</th>
+                    <th>Date</th>
+                    <th>Weight</th>
+                    <th>Body Fat Percentage</th>
+                    <th>Muscle Mass</th>
+                    <th>Cardiovascular Endurance</th>
+                    <th>Strength</th>
+                    <th>Flexibility</th>
+                    <th>Other Metrics</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for progress_report in progress_reports %}
+                    <tr>
+                        <td>{{ progress_report.report_id }}</td>
+                        <td>{{ progress_report.date }}</td>
+                        <td>{{ progress_report.weight }}</td>
+                        <td>{{ progress_report.body_fat_percentage }}</td>
+                        <td>{{ progress_report.muscle_mass }}</td>
+                        <td>{{ progress_report.cardiovascular_endurance }}</td>
+                        <td>{{ progress_report.strength }}</td>
+                        <td>{{ progress_report.flexibility }}</td>
+                        <td>{{ progress_report.other_metrics }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="9">No progress reports available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+
+        <h3>Fee Reports:</h3>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Date Paid</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fee_report in fee_reports %}
+                    <tr>
+                        <td>{{ fee_report.date_paid }}</td>
+                        <td>{{ fee_report.amount }}</td>
+                        <td>{{ fee_report.status }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No fee reports available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

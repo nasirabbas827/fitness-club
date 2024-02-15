@@ -1,0 +1,15 @@
+<!-- delete_expenses_report.html -->
+{% extends 'base.html' %}
+{% block title %}
+    Delete Expenses Report
+{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Delete Expenses Report</h2>
+        <p>Are you sure you want to delete the expenses report "{{ expenses_report }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+{% endblock %}

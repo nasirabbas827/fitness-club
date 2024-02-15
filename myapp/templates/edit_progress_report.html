@@ -1,0 +1,17 @@
+<!-- edit_progress_report.html -->
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Progress Report
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2 class="mb-4">Edit Progress Report</h2>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+{% endblock %}
